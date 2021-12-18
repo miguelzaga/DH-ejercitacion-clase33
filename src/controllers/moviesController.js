@@ -19,6 +19,7 @@ const moviesController = {
             .then(movies => {
                 res.render('moviesList.ejs', {movies})
             })
+            .catch(err => res.send(err))
     },
     'detail': (req, res) => {
         db.Movie.findByPk(req.params.id)
