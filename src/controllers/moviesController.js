@@ -100,7 +100,10 @@ const moviesController = {
             .then(movie => res.render('moviesDelete', {Movie: movie}))   
     },
     destroy: function (req,res) {
-        res.send("TODO")
+        Movies.destroy({
+            where: {id: req.params.id}
+        })
+        res.redirect('/movies')
 
     }
 }
