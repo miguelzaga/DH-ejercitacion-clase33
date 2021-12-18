@@ -78,13 +78,22 @@ const moviesController = {
             .then(function(arr) {
                 let movie = arr[0]
                 let genres = arr[1]
-                // return res.send(arr)
                 res.render('moviesEdit', {Movie: movie, allGenres: genres})})
             .catch(err => err)        
     },
     update: function (req,res) {
-        res.send("TODO")
-        
+        Movies.update({
+            title: req.body.title,
+            rating: req.body.rating,
+            awards: req.body.awards,
+            release_date: req.body.release_date,
+            length: req.body.length,
+            genre_id: req.body.genre_id
+        },
+        {
+            where: {id: req.params.id}
+        })
+        res.redirect('/movies')        
     },
     delete: function (req,res) {
         res.send("TODO")
