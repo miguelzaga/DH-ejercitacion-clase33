@@ -78,6 +78,7 @@ const moviesController = {
             .then(function(arr) {
                 let movie = arr[0]
                 let genres = arr[1]
+                // return res.send(arr)
                 res.render('moviesEdit', {Movie: movie, allGenres: genres})})
             .catch(err => err)        
     },
