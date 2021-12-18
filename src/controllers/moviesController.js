@@ -65,18 +65,32 @@ const moviesController = {
             length: req.body.length,
             genre_id: req.body.genre_id
         })
+        res.redirect('/movies')
 
     },
     edit: function(req,res) {
+        let movieP = Movies.findByPk(req.params.id, {
+            include: ["genres"]
+        })
+        let genreP = Genres.findAll()
 
+        Promise.all([movieP, genreP])
+            .then(function(arr) {
+                let movie = arr[0]
+                let genres = arr[1]
+                res.render('moviesEdit', {Movie: movie, allGenres: genres})})
+            .catch(err => err)        
     },
     update: function (req,res) {
-
+        res.send("TODO")
+        
     },
     delete: function (req,res) {
-
+        res.send("TODO")
+        
     },
     destroy: function (req,res) {
+        res.send("TODO")
 
     }
 }
